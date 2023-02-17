@@ -1,0 +1,20 @@
+from django.contrib import admin
+from .models import *
+# Register your models here.
+admin.site.register(Group)
+admin.site.register(Teacher)
+admin.site.register(Pupil)
+admin.site.register(Payment_A)
+admin.site.register(Payment_B)
+admin.site.register(Lesson)
+admin.site.register(Subject)
+admin.site.register(Parents)
+admin.site.register(Lesson_Days)
+admin.site.register(Notification)
+admin.site.register(Level)
+admin.site.register(Task)
+admin.site.register(Task_Result)
+admin.site.register(Outgoing)
+admin.site.register(Branch)
+admin.site.register(User)
+admin.site.register(Pupil_Copy)

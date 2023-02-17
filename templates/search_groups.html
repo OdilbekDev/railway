@@ -1,0 +1,293 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>RoyalUI Admin</title>
+  <!-- plugins:css -->
+  <link rel="stylesheet" href="{% static 'vendors/ti-icons/css/themify-icons.css' %}">
+  <link rel="stylesheet" href="{% static 'vendors/base/vendor.bundle.base.css' %}">
+  <!-- endinject -->
+  <!-- plugin css for this page -->
+  <!-- End plugin css for this page -->
+  <!-- inject:css -->
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <!-- endinject -->
+  <link rel="shortcut icon" href="{% static 'images/favicon.png' %}" />
+</head>
+<body>
+  <div class="container-scroller">
+    <!-- partial:partials/_navbar.html -->
+    <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+      <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
+        <a class="navbar-brand" href="{% url 'hisobot' %}"><img style="object-fit: contain; width: 60px; height: 80px;" src="{% static 'images/logo.png' %}" class="mr-2" alt="logo"/></a>
+        <p style="font-family: 'Noto Sans'; color: black; background-color: yellow;">WESTER SCHOOL</p>
+      </div>
+      <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
+        <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+          <span class="ti-view-list"></span>
+        </button>
+        <ul class="navbar-nav mr-lg-2">
+          <li class="nav-item nav-search d-none d-lg-block">
+            <div class="input-group">
+              <div class="input-group-prepend hover-cursor" id="navbar-search-icon">
+                <span class="input-group-text" id="search">
+                  <i class="ti-search"></i>
+                </span>
+              </div>
+              <form class="d-flex" action="{% url 'search-groups' %}" method="post">
+                {% csrf_token %}
+                <input name="group" type="text" class="form-control" id="navbar-search-input" placeholder="Search now" aria-label="search" aria-describedby="search" required>
+                <button class="btn btn-primary" type="submit">Qidirish</button>
+              </form>
+            </div>
+          </li>
+        </ul>
+        <ul class="navbar-nav navbar-nav-right">
+        </ul>
+        <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+          <span class="ti-view-list"></span>
+        </button>
+      </div>
+    </nav>
+    <!-- partial -->
+    <div class="container-fluid page-body-wrapper">
+      <!-- partial:partials/_sidebar.html -->
+      <nav class="sidebar sidebar-offcanvas" id="sidebar">
+        <ul class="nav">
+          {% if request.user.type == 1 or request.user.type == 4 %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'hisobot' %}">
+                <i class="ti-info-alt menu-icon"></i>
+                <span class="menu-title">Hisobot</span>
+              </a>
+            </li>
+          {% endif %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'groups' %}">
+              <i class="ti-view-list-alt menu-icon"></i>
+              <span class="menu-title">Guruhlar</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href={% url 'pupils_all' %}>
+              <i class="ti-user menu-icon"></i>
+              <span class="menu-title">O'quvchilar</span>
+            </a>
+          </li>
+          {% if request.user.type == 1 or request.user.type == 4 %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'teachers' %}">
+                <i class="ti-star menu-icon"></i>
+                <span class="menu-title">O'qituvchilar</span>
+              </a>
+            </li>
+          {% endif %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'payments-all' %}">
+              <i class="ti-money menu-icon"></i>
+              <span class="menu-title">To'lovlar</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'parents' %}">
+              <i class="ti-view-list-alt menu-icon"></i>
+              <span class="menu-title">Ota onalar</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'time-tables' %}">
+              <i class="ti-view-list-alt menu-icon"></i>
+              <span class="menu-title">Dars jadvallari</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'debtors' %}">
+              <i class="ti-view-list-alt menu-icon"></i>
+              <span class="menu-title">Qarzdorlar ro'yhati</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'waiting-pupils' %}">
+              <i class="ti-view-list-alt menu-icon"></i>
+              <span class="menu-title">Kutayotgan o'quvchilar ro'yhati</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <!-- partial -->
+      <div class="main-panel">
+        <div class="content-wrapper">
+            <div class="col-lg-12 stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <form action="{% url 'filter-groups' %}" method="post">
+                    {% csrf_token %}
+                    <select name="level" class="form-select" style="width: 150px; height: 30px; text-align: center;">
+                      {% for i in level %}
+                      <option value="{{ i.id }}" name="level">{{ i.name}}</option>
+                      {% endfor %}
+                    </select>
+                    <button class="btn btn-success" type="submit" style="border-radius: 28px;">Filterlash</button>
+                  </form>
+                  <p class="card-title mb-0">Guruhlar</p>
+                  <div class="d-flex" style="display: flex; justify-content: center;">
+                    <button style="border-radius: 28px; margin-right: 5px;" type="submit" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">Qo'shish</button>  
+                  </div>
+                  
+                  <!-- Modal -->
+                  <div id="myModal" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
+
+                      <!-- Modal content-->
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h4 class="modal-title">Guruh Qo'shish</h4>
+                        </div>
+                        <div class="modal-body">
+                          <form action="{% url 'add-groups' %}" method="post">
+                            {% csrf_token %}
+                            <input class="form-control mt-2" type="text" name="name" placeholder="Guruh nomini kiriting" required>
+                            <input class="form-control mt-2" type="text" name="level" placeholder="Guruh darajasini kiriting" required>
+                            <input class="form-control mt-2" type="text" name="subject" placeholder="Guruh fanini kiriting" required>
+                            <input class="form-control mt-2" type="text" name="teacher" placeholder="Guruh o'qituvchisini kiriting" required>
+                            <input class="form-control mt-2" type="text" name="money" placeholder="Guruh oylik to'lovini kiriting" required>
+                            <input class="form-control mt-2" type="text" name="lesson_days" placeholder="Guruh dars kunlarini kiriting" required>
+                            <input class="form-control mt-2" type="text" name="room" placeholder="Guruh honasini kiriting" required>
+                            <input class="form-control mt-2" type="text" name="max_pupil" placeholder="Guruh o'quvchilar sonini kiriting" required>
+                            <input class="form-control mt-2" type="text" name="time" placeholder="Guruh dars boshlanish vaqtini kiriting" required>                            
+                        </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Yopish</button>
+                            <button class="btn btn-success" type="submit">Saqlash</button>
+                          </form>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+                  <div class="table-responsive">
+                    <table class="table table-hover">
+                      <thead>
+                        <tr>
+                          <th>Guruh nomi</th>
+                          <th>Guruh darajasi</th>
+                          <th>Guruh fani</th>
+                          <th>Guruh O'qituvchisi</th>
+                          <th>Guruh To'lovi</th>
+                          <th>Guruh dars kunlari</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                      {% for i in group %}
+                        <tr>
+                          <td>{{ i.name }}</td>
+                          <td>{{ i.level }}</td>
+                          <td>{{ i.subject }}</td>
+                          <td>{{ i.teacher }}</td>
+                          <td><label class="badge badge-danger">{{ i.money }} so'm</label></td>
+                          <td>{% for i2 in i.lesson_days.all %}
+                                {{i2.dayuz}}
+                              {% endfor %}
+                          </td>
+                          <td>
+                            <div class="btn-group">
+                              <button type="button" class="btn btn-outline-secondary dropdown-toggle" data-toggle="dropdown">Buyruq</button>
+                              <div class="dropdown-menu">
+                                <button class="dropdown-item" data-toggle="modal" data-target="#exampleModal{{i.id}}">Tahrirlash</button>
+                                <a href="{% url 'delete-pupil' pk=i.id %}" class="dropdown-item">O'chirish</a>
+                              </div>
+                            </div>
+                            <div class="modal fade" id="exampleModal{{i.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                              <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Tahrirlash Bo'limi</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                      <span aria-hidden="true">&times;</span>
+                                    </button>
+                                  </div>
+                                  <form action="{% url 'edit-groups' %}" method="post">
+                                    <div class="modal-body">
+                                        {% csrf_token %}
+                                        <input type="text " class="form-control" name="name" value="{{ i.name }}" required>
+                                        <input type="text" class="form-control" name="money" value="{{ i.level }}" required>
+                                        <input type="text" class="form-control" name="subject" value="{{ i.subject }}" required>
+                                        <input type="text" class="form-control" name="phone" value="{{ i.teacher }}" required>
+                                        <input type="text" class="form-control" name="extra_phone" value="{{ i.lesson_days }}" required>
+                                        <input type="text" class="form-control" name="email" value="{{ i.room }}" required>
+                                        <input type="text" class="form-control" name="location" value="{{ i.max_pupil }}" required>
+                                        <input type="vaqti" class="form-control" name="location" value="{{ i.time }}" required>
+                                        <input type="hidden" value="{{ i.id }}" required>
+                                      </div>
+                                      <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Bekor qilish</button>
+                                        <button type="submit" class="btn btn-primary">O'zgarishlarni saqlash</button>
+                                      </div>
+                                  </form>
+                                </div>
+                              </div>
+                          </div>
+                            <div class="modal fade" id="exampleModalCenter{{i.id}}" role="dialog" >
+                              <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLongTitle">To'lov</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                      <span aria-hidden="true">&times;</span>
+                                    </button>
+                                  </div>
+
+                                <form action="{% url 'payment-pupil' pk=i.id %}" method="post">
+                                  <div class="modal-body">
+                                      {% csrf_token %}
+                                      <input type="text " class="form-control" name="pupil" value="{{ i.name }}" required>
+                                      <input type="text" class="form-control" name="money" placeholder="Summani kiriting">
+                                      <input type="hidden" value="{{ i.id }}" name="id" required>
+                                  <!-- </form>s -->
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Bekor qilish</button>
+                                    <button type="submit" class="btn btn-primary">Saqlash</button>
+                                    </div>
+                                </form>
+                          </td>
+                        </tr>
+                      {% endfor %}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+        <!-- content-wrapper ends -->
+        <!-- partial:partials/_footer.html -->
+        <footer class="footer">
+          <div class="d-sm-flex justify-content-center justify-content-sm-between">
+            <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2023 All rights reserved.</span>
+          </div>
+        </footer>
+        <!-- partial -->
+      </div>
+      <!-- main-panel ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
+  </div>
+  <!-- container-scroller -->
+
+  <!-- plugins:js -->
+  <script src="{% static 'vendors/base/vendor.bundle.base.js' %}"></script>
+  <script src="{% static 'vendors/chart.js/Chart.min.js' %}"></script>
+  <script src="{% static 'js/off-canvas.js' %}"></script>
+  <script src="{% static 'js/hoverable-collapse.js' %}"></script>
+  <script src="{% static 'js/template.js' %}"></script>
+  <script src="{% static 'js/todolist.js' %}"></script>
+  <script src="{% static 'js/dashboard.js' %}"></script>
+</body>
+
+</html>
+

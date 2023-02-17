@@ -1,0 +1,74 @@
+.container{
+    font-family: 'Noto Sans';
+    margin-top: 20px;
+    width: 400px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    border: 3px solid #000;
+    margin: 0 auto;
+}
+
+.wrapper{
+    width: 200px;
+}
+
+.check-up{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+.check-info{
+    width: 380px;
+    height: 100px;
+    justify-content: space-evenly;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.check-main {
+    width: 385px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.check-list{
+    margin-left: -30px;
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    list-style-type: none;
+}
+
+.check-money{
+    width: 350px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.extra__list{
+    margin-right: 30px;
+    width: 400px;
+    display: flex;
+    justify-content: space-between;
+    list-style-type: none;
+}
+
+.logo{
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin: 0 auto;
+    -webkit-border-radius:;
+    -moz-border-radius:;
+    -ms-border-radius:;
+    -o-border-radius:;
+}

@@ -1,0 +1,309 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>WESTER SCHOOL ALL PUPILS</title>
+  <!-- plugins:css -->
+  <link rel="stylesheet" href="{% static 'vendors/ti-icons/css/themify-icons.css' %}">
+  <link rel="stylesheet" href="{% static 'vendors/base/vendor.bundle.base.css' %}">
+  <!-- endinject -->
+  <!-- inject:css -->
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <!-- endinject -->
+  <link rel="shortcut icon" href="{% static '../../images/favicon.png' %}" />
+</head>
+
+<body>
+  <div class="container-scroller">
+    <!-- partial:../../partials/_navbar.html -->
+    <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+      <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
+        <a class="navbar-brand" href="{% url 'hisobot' %}"><img style="object-fit: contain; width: 60px; height: 80px;" src="{% static 'images/logo.png' %}" class="mr-2" alt="logo"/></a>
+        <p style="font-family: 'Noto Sans'; color: black; background-color: yellow;">WESTER SCHOOL</p>
+      </div>
+      <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
+        <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+          <span class="ti-view-list"></span>
+        </button>
+        <ul class="navbar-nav mr-lg-2">
+          <li class="nav-item nav-search d-none d-lg-block">
+            <div class="input-group">
+              <div class="input-group-prepend hover-cursor" id="navbar-search-icon">
+                <span class="input-group-text" id="search">
+                  <i class="ti-search"></i>
+                </span>
+              </div>
+              <input type="text" class="form-control" id="navbar-search-input" placeholder="Search now" aria-label="search" aria-describedby="search">
+            </div>
+          </li>
+        </ul>
+        <ul class="navbar-nav navbar-nav-right">
+          <li class="nav-item dropdown mr-1">
+            <a class="nav-link count-indicator dropdown-toggle d-flex justify-content-center align-items-center" id="messageDropdown" href="#" data-toggle="dropdown">
+              <i class="ti-email mx-0"></i>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="messageDropdown">
+              <p class="mb-0 font-weight-normal float-left dropdown-header">Messages</p>
+              <a class="dropdown-item">
+                <div class="item-thumbnail">
+                    <img src="{% static 'images/faces/face4.jpg' %}" alt="image" class="profile-pic">
+                </div>
+                <div class="item-content flex-grow">
+                  <h6 class="ellipsis font-weight-normal">David Grey
+                  </h6>
+                  <p class="font-weight-light small-text text-muted mb-0">
+                    The meeting is cancelled
+                  </p>
+                </div>
+              </a>
+              <a class="dropdown-item">
+                <div class="item-thumbnail">
+                    <img src="{% static 'images/faces/face2.jpg' %}" alt="image" class="profile-pic">
+                </div>
+                <div class="item-content flex-grow">
+                  <h6 class="ellipsis font-weight-normal">Tim Cook
+                  </h6>
+                  <p class="font-weight-light small-text text-muted mb-0">
+                    New product launch
+                  </p>
+                </div>
+              </a>
+              <a class="dropdown-item">
+                <div class="item-thumbnail">
+                    <img src="{% static 'images/faces/face3.jpg' %}" alt="image" class="profile-pic">
+                </div>
+                <div class="item-content flex-grow">
+                  <h6 class="ellipsis font-weight-normal"> Johnson
+                  </h6>
+                  <p class="font-weight-light small-text text-muted mb-0">
+                    Upcoming board meeting
+                  </p>
+                </div>
+              </a>
+            </div>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#" data-toggle="dropdown">
+              <i class="ti-bell mx-0"></i>
+              <span class="count"></span>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="notificationDropdown">
+              <p class="mb-0 font-weight-normal float-left dropdown-header">Notifications</p>
+              <a class="dropdown-item">
+                <div class="item-thumbnail">
+                  <div class="item-icon bg-success">
+                    <i class="ti-info-alt mx-0"></i>
+                  </div>
+                </div>
+                <div class="item-content">
+                  <h6 class="font-weight-normal">Application Error</h6>
+                  <p class="font-weight-light small-text mb-0 text-muted">
+                    Just now
+                  </p>
+                </div>
+              </a>
+              <a class="dropdown-item">
+                <div class="item-thumbnail">
+                  <div class="item-icon bg-warning">
+                    <i class="ti-settings mx-0"></i>
+                  </div>
+                </div>
+                <div class="item-content">
+                  <h6 class="font-weight-normal">Settings</h6>
+                  <p class="font-weight-light small-text mb-0 text-muted">
+                    Private message
+                  </p>
+                </div>
+              </a>
+              <a class="dropdown-item">
+                <div class="item-thumbnail">
+                  <div class="item-icon bg-info">
+                    <i class="ti-user mx-0"></i>
+                  </div>
+                </div>
+                <div class="item-content">
+                  <h6 class="font-weight-normal">New user registration</h6>
+                  <p class="font-weight-light small-text mb-0 text-muted">
+                    2 days ago
+                  </p>
+                </div>
+              </a>
+            </div>
+          </li>
+          <li class="nav-item nav-profile dropdown">
+            <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
+              <img src="{% static 'images/faces/face28.jpg' %}" alt="profile"/>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
+              <a class="dropdown-item">
+                <i class="ti-settings text-primary"></i>
+                Settings
+              </a>
+              <a class="dropdown-item">
+                <i class="ti-power-off text-primary"></i>
+                Logout
+              </a>
+            </div>
+          </li>
+        </ul>
+        <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+          <span class="ti-view-list"></span>
+        </button>
+      </div>
+    </nav>
+    <!-- partial -->
+    <div class="container-fluid page-body-wrapper">
+      <!-- partial:../../partials/_sidebar.html -->
+      
+      <nav class="sidebar sidebar-offcanvas" id="sidebar">
+        <ul class="nav">
+          {% if request.user.type == 1 or request.user.type == 4 %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'hisobot' %}">
+                <i class="ti-info-alt menu-icon"></i>
+                <span class="menu-title">Hisobot</span>
+              </a>
+            </li>
+          {% endif %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'groups' %}">
+              <i class="ti-view-list-alt menu-icon"></i>
+              <span class="menu-title">Guruhlar</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href={% url 'pupils_all' %}>
+              <i class="ti-user menu-icon"></i>
+              <span class="menu-title">O'quvchilar</span>
+            </a>
+          </li>
+          {% if request.user.type == 1 or request.user.type == 4 %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'teachers' %}">
+                <i class="ti-star menu-icon"></i>
+                <span class="menu-title">O'qituvchilar</span>
+              </a>
+            </li>
+          {% endif %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'payments-all' %}">
+              <i class="ti-money menu-icon"></i>
+              <span class="menu-title">To'lovlar</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'parents' %}">
+              <i class="ti-view-list-alt menu-icon"></i>
+              <span class="menu-title">Ota onalar</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'time-tables' %}">
+              <i class="ti-view-list-alt menu-icon"></i>
+              <span class="menu-title">Dars jadvallari</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'debtors' %}">
+              <i class="ti-view-list-alt menu-icon"></i>
+              <span class="menu-title">Qarzdorlar ro'yhati</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'waiting-pupils' %}">
+              <i class="ti-view-list-alt menu-icon"></i>
+              <span class="menu-title">Kutayotgan o'quvchilar ro'yhati</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+      
+      <!-- partial -->
+      <div class="main-panel">
+        <div class="content-wrapper">
+          <div class="row">
+            <div class="col-lg-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Oylik maoshlarning ro'yhati</h4>
+                  <div class="table-responsive pt-3">
+                    <table class="table table-bordered">
+                      <thead>
+                        <tr>
+                          <th>
+                            #
+                          </th>
+                          <th>
+                            Ism
+                          </th>
+                          <th>
+                            Summa
+                          </th>
+                          <th>
+                            Guruh
+                          </th>
+                          <th>
+                            Sana
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {% for i in sallery %}
+                          <tr>
+                          <td>
+                            {{i.id}}
+                          </td>
+                          <td>
+                            {{i.teacher.name}}
+                          </td>
+                          <td>
+                            {{i.money}} so'm
+                          </td>
+                          <td>
+                            {{i.group.name}}
+                          </td>
+                          <td>
+                            {{i.date}}
+                          </td>
+                          </tr>
+                        {% endfor %}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- content-wrapper ends -->
+        <!-- partial:../../partials/_footer.html -->
+        <footer class="footer">
+          <div class="d-sm-flex justify-content-center justify-content-sm-between">
+          </div>
+        </footer>
+        <!-- partial -->
+      </div>
+      <!-- main-panel ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
+  </div>
+  <!-- container-scroller -->
+  <!-- plugins:js -->
+  <script src="{% static 'vendors/base/vendor.bundle.base.js' %}"></script>
+  <!-- endinject -->
+  <!-- Plugin js for this page-->
+  <!-- End plugin js for this page-->
+  <!-- inject:js -->
+  <script src="{% static 'js/off-canvas.js' %}"></script>
+  <script src="{% static 'js/hoverable-collapse.js' %}"></script>
+  <script src="{% static 'js/template.js' %}"></script>
+  <script src="{% static 'js/todolist.js' %}"></script>
+  <!-- endinject -->
+  <!-- Custom js for this page-->
+  <!-- End custom js for this page-->
+</body>
+
+</html>

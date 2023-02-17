@@ -1,0 +1,141 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WESTER School To'lov Cheki</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/checkout.css' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+</head>
+<body>
+    <div class="container">
+        <div class="check-up mt-3">
+            <img class="logo" src="{% static 'images/photo_2023-01-05_17-39-48-removebg-preview.png' %}" alt="">
+            <p  style="font-size: 15px; margin-top: 10px;">"WESTER GROUP RJ" MCHJ</p>
+            <h4>{{payment.pupil.branch}} BRANCH</h4>
+            <spa>Tel: 55 256 90 50</spa>
+            <p>Kurs to'lovi uchun chek</p>
+        </div>
+        <div class="check-info">
+            <p>Check #{{payment.id}}</p>
+            <h5>{{payment.pupil.name}}</h5>
+            <p>{{payment.date_joined}}</p>
+        </div>
+        <div class="check-main">
+            <ul class="check-list">
+                <li>
+                    Kurs nomi:
+                </li>
+                <li>
+                    {{payment.pupil.group.subject}}
+                </li>
+            </ul>
+            <hr>
+            <ul class="check-list">
+                <li>
+                    Guruh raqami:
+                </li>
+                <li>
+                    {{payment.group.name}}
+                </li>
+            </ul>
+            <hr>
+            <ul class="check-list">
+                <li>
+                    To'lov qilingan oy:
+                </li>
+                <li>
+                    {% if month == 1 %}
+                        Yanvar
+                    {% elif month == 2 %}
+                        Fevral
+                    {% elif month == 3 %}
+                        Mart
+                    {% elif month == 4 %}
+                        Aprel
+                    {% elif month == 5 %}
+                        May
+                    {% elif month == 6 %}
+                        Iyun
+                    {% elif month == 7 %}
+                        Iyul
+                    {% elif month == 8 %}
+                        Avgust
+                    {% elif month == 9 %}
+                        Sentabr
+                    {% elif month == 10 %}
+                        Oktabr
+                    {% elif month == 11 %}
+                        Noyabr
+                    {% elif month == 12 %}
+                        Dekabr
+                    {% endif %}
+                </li>
+            </ul>
+            <hr>
+            <ul class="check-list">
+                <li>
+                    O'qituvchi:
+                </li>
+                <li>
+                    {{payment.group.teacher.name}}
+                </li>
+            </ul>
+            <hr>
+            <ul class="check-list">
+                <li>
+                    Reception:
+                </li>
+                <li>
+                    {{payment.reception.first_name}} {{payment.reception.last_name}}
+                </li>
+            </ul>
+            <hr>
+            <ul class="check-list">
+                <li>
+                    To'lov turi:
+                </li>
+                <li>
+                    {% if payment.type == 1 %}
+                        Naqd Pul
+                    {% else %}
+                        Plastik Karta
+                    {% endif %}
+                </li>
+            </ul>
+            <hr>
+        </div>
+        <div class="check-money">
+            <h4>Umumiy summa</h4>
+            <h4>{{money}} so'm</h4>
+        </div>
+        <p>//////////////////////////////////////////////////////////////////////</p>
+        <div class="d-flex mt-5 ml-4 mb-5" style="justify-content: space-evenly; align-items: center; flex-direction: column;">
+            <h1 class="">To'landi!</h1>
+            <img style="width: 200px; height: 200px;" src="{% static 'images/frame.png' %}" alt="">
+        </div>
+        <div class="extra__list">
+            <p style="margin: 0 auto; font-size: 20px;">Bizga qo'shiling!</p>
+        </div>
+        <div class="media d-flex" style="justify-content: space-around; width: 140px; margin-right: 55px;">
+            <i class="bi bi-telegram"></i>
+            <i class="bi bi-instagram"></i>
+            <p style="margin-right: -20px;">@wester_school</p>
+        </div>
+        <div class="extra-info">
+            <ul class="extra__list">
+                <li>
+                    Manzil:
+                </li>
+                <li>
+                    {{payment.pupil.branch.location}}
+                </li>
+            </ul>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,80 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>WESTER SCHOOL</title>
+  <!-- plugins:css -->
+  <link rel="stylesheet" href="{% static 'vendors/ti-icons/css/themify-icons.css' %}">
+  <link rel="stylesheet" href="{% static 'vendors/base/vendor.bundle.base.css' %}">
+  <!-- endinject -->
+  <!-- plugin css for this page -->
+  <!-- End plugin css for this page -->
+  <!-- inject:css -->
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <!-- endinject -->
+  <link rel="shortcut icon" href="{% static 'images/favicon.png' %}" />
+</head>
+
+<body>
+  <div class="container-scroller">
+    <div class="container-fluid page-body-wrapper full-page-wrapper">
+      <div class="content-wrapper d-flex align-items-stretch auth auth-img-bg">
+        <div class="row flex-grow">
+          <div class="col-lg-6 d-flex align-items-center justify-content-center" style="margin: 0 auto;">
+            <div class="auth-form-transparent text-left col-10" >
+              <div class="brand-logo">
+                <img style="margin-left: 95px;" src="{% static 'images/logo.png' %}" alt="logo">
+                <span style="background-color: yellow; font-family: 'Noto Sans'; font-size: 35px;">Wester School</span>
+              </div>
+              <h4>Login Sahifa</h4>
+              <h6 class="font-weight-light">O'z username va parolingizni to'g'ri kiriting</h6>
+              <form class="pt-3" method="post" action="{% url 'login-auth' %}">
+                {% csrf_token %}
+                <div class="form-group">
+                  <label for="exampleInputEmail">Username</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend bg-transparent">
+                      <span class="input-group-text bg-transparent border-right-0">
+                        <i class="ti-user text-primary"></i>
+                      </span>
+                    </div>
+                    <input name="username" type="text" class="form-control form-control-lg border-left-0" id="exampleInputEmail" placeholder="Username">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputPassword">Parol</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend bg-transparent">
+                      <span class="input-group-text bg-transparent border-right-0">
+                        <i class="ti-lock text-primary"></i>
+                      </span>
+                    </div>
+                    <input name="password" type="password" class="form-control form-control-lg border-left-0" id="exampleInputPassword" placeholder="parol">                        
+                  </div>
+                </div>
+                <div class="my-3">
+                  <button type="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" style="border-radius: 35px; margin: 0 auto; width: 450px;">LOGIN</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- content-wrapper ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
+  </div>
+  <!-- container-scroller -->
+  <!-- plugins:js -->
+  <script src="{% static 'vendors/base/vendor.bundle.base.js' %}"></script>
+  <script src="{% static 'js/off-canvas.js' %}"></script>
+  <script src="{% static 'js/hoverable-collapse.js' %}"></script>
+  <script src="{% static 'js/template.js' %}"></script>
+  <script src="{% static 'js/todolist.js' %}"></script>
+</body>
+
+</html>

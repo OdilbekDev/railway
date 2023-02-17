@@ -1,0 +1,291 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>WESTER SCHOOL ALL PUPILS</title>
+  <!-- plugins:css -->
+  <link rel="stylesheet" href="{% static 'vendors/ti-icons/css/themify-icons.css' %}">
+  <link rel="stylesheet" href="{% static 'vendors/base/vendor.bundle.base.css' %}">
+  <!-- endinject -->
+  <!-- inject:css -->
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <!-- endinject -->
+  <link rel="shortcut icon" href="{% static '../../images/favicon.png' %}" />
+</head>
+
+<body>
+  <div class="container-scroller">
+    <!-- partial:../../partials/_navbar.html -->
+    <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+      <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
+        <a class="navbar-brand" href="{% url 'hisobot' %}"><img style="object-fit: contain; width: 60px; height: 80px;" src="{% static 'images/logo.png' %}" class="mr-2" alt="logo"/></a>
+        <p style="font-family: 'Noto Sans'; color: black; background-color: yellow;">WESTER SCHOOL</p>
+      </div>
+      <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
+        <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+          <span class="ti-view-list"></span>
+        </button>
+        <ul class="navbar-nav mr-lg-2">
+          <li class="nav-item nav-search d-none d-lg-block">
+            <div class="input-group">
+              <div class="input-group-prepend hover-cursor" id="navbar-search-icon">
+                <span class="input-group-text" id="search">
+                  <i class="ti-search"></i>
+                </span>
+              </div>
+              <form class="d-flex" action="{% url 'search-worker' %}" method="post">
+                {% csrf_token %}
+                <input name="worker" type="text" class="form-control" id="navbar-search-input" placeholder="Search now" aria-label="search" aria-describedby="search">
+                <button class="btn btn-primary" type="submit">Qidirish</button>
+              </form>
+            </div>
+          </li>
+        </ul>
+        <ul class="navbar-nav navbar-nav-right">
+        </ul>
+        <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+          <span class="ti-view-list"></span>
+        </button>
+      </div>
+    </nav>
+    <!-- partial -->
+    <div class="container-fluid page-body-wrapper">
+      <!-- partial:../../partials/_sidebar.html -->
+      
+      <nav class="sidebar sidebar-offcanvas" id="sidebar">
+        <ul class="nav">
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'hisobot' %}">
+              <i class="ti-info-alt menu-icon"></i>
+              <span class="menu-title">Hisobot</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'workers' %}">
+              <i class="ti-info-alt menu-icon"></i>
+              <span class="menu-title">Ishchilar</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'groups' %}">
+              <i class="ti-view-list-alt menu-icon"></i>
+              <span class="menu-title">Guruhlar</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href={% url 'pupils_all' %}>
+              <i class="ti-user menu-icon"></i>
+              <span class="menu-title">O'quvchilar</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'teachers' %}">
+              <i class="ti-star menu-icon"></i>
+              <span class="menu-title">O'qituvchilar</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'payments-all' %}">
+              <i class="ti-money menu-icon"></i>
+              <span class="menu-title">To'lovlar</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'parents' %}">
+              <i class="ti-view-list-alt menu-icon"></i>
+              <span class="menu-title">Ota-onalar</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'time-tables' %}">
+              <i class="ti-view-list-alt menu-icon"></i>
+              <span class="menu-title">Dars jadvallari</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'debtors' %}">
+              <i class="ti-view-list-alt menu-icon"></i>
+              <span class="menu-title">Qarzdorlar ro'yhati</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'waiting-pupils' %}">
+              <i class="ti-view-list-alt menu-icon"></i>
+              <span class="menu-title">Kutayotgan o'quvchilar ro'yhati</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+      
+      <!-- partial -->
+      <div class="main-panel">
+        <div class="content-wrapper">
+          <div class="row">
+            <div class="col-lg-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Ishchilar ro'yhati</h4>
+                  <div class="d-flex" style="display: flex; justify-content: center;">
+                    <button style="border-radius: 28px; margin-right: 5px;" type="submit" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#add">Qo'shish</button>  
+                  </div>
+                  <div id="add" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
+
+                      <!-- Modal content-->
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h4 class="modal-title">O'quvchi Qo'shish</h4>
+                        </div>
+                        <div class="modal-body">
+                          <form action="{% url 'workers-add' %}" method="post">
+                            {% csrf_token %}
+                            <input class="form-control mt-2" type="text" name="first_name" placeholder="Ismni kiriting" required>
+                            <input class="form-control mt-2" type="text" name="last_name" placeholder="Familiya kiriting" required>
+                            <input class="form-control mt-2" type="text" name="username" placeholder="Username kiriting" required>
+                            <input class="form-control mt-2" type="text" name="password" placeholder="Parolni kiriting" required>
+                            <select name="type">
+                              <option selected="true" value="#">Kasbni tanlang</option>
+                              <option value="2">O'qituvchi</option>
+                              <option value="3">Qabulxona</option>
+                              <option value="4">Menejer</option>
+                            </select>
+                        </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Yopish</button>
+                            <button class="btn btn-success" type="submit">Saqlash</button>
+                          </form>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+                  <div class="table-responsive pt-3">
+                    <table class="table table-dark">
+                      <thead>
+                        <tr>
+                          <th>
+                            #
+                          </th>
+                          <th>
+                            Ismi
+                          </th>
+                          <th>
+                            Familiyasi
+                          </th>
+                          <th>
+                            Username
+                          </th>
+                          <th>
+                            Kasb
+                          </th>
+                          <th>
+                            Qo'shilgan sana
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {% for i in worker %}
+                          <tr>
+                            <td>
+                              {{i.id}}
+                            </td>
+                            <td>
+                              {{i.first_name}}
+                            </td>
+                            <td>
+                              {{i.last_name}}
+                            </td>
+                            <td>
+                              {{i.username}}
+                            </td>
+                            <td>
+                              {% if i.type == 1 %}
+                                Direktor
+                              {% elif i.type == 2 %}
+                                O'qituvchi
+                              {% elif i.type == 3 %}
+                                Qabulxona
+                              {% elif i.type == 4 %}
+                                Menejer
+                              {% endif %}
+                            </td>
+                            <td>
+                              {{i.date_joined}}
+                            </td>
+                            <td>
+                              <div class="btn-group">
+                                <button type="button" class="btn btn-outline-secondary dropdown-toggle" data-toggle="dropdown">Buyruq</button>
+                                <div class="dropdown-menu">
+                                  <button class="dropdown-item" data-toggle="modal" data-target="#exampleModal{{i.id}}">Tahrirlash</button>
+                                  <a href="{% url 'delete-worker' pk=i.id %}" class="dropdown-item">O'chirish</a>
+                                </div>
+                              </div>
+                              <div class="modal fade" id="exampleModal{{i.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                  <div class="modal-content">
+                                    <div class="modal-header">
+                                      <h5 class="modal-title" id="exampleModalLabel">Tahrirlash Bo'limi</h5>
+                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                      </button>
+                                    </div>
+                                    <form action="{% url 'edit-worker' %}" method="post">
+                                      <div class="modal-body">
+                                          {% csrf_token %}
+                                          <input type="text " class="form-control" name="first_name" value="{{ i.first_name }}" required>
+                                          <input type="text " class="form-control" name="last_name" value="{{ i.last_name }}" required>
+                                          <input type="text " class="form-control" name="username" value="{{ i.username }}" required>
+                                          <input type="number " class="form-control" name="password" value="{{ i.password }}" required>
+                                          <input type="hidden" name="id" value="{{ i.id }}" required>
+                                        </div>
+                                        <div class="modal-footer">
+                                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Bekor qilish</button>
+                                          <button type="submit" class="btn btn-primary">O'zgarishlarni saqlash</button>
+                                        </div>
+                                    </form>
+                                  </div>
+                                </div>
+                            </div>
+                            </td>
+                          </tr>
+                        {% endfor %}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- content-wrapper ends -->
+        <!-- partial:../../partials/_footer.html -->
+        <footer class="footer">
+          <div class="d-sm-flex justify-content-center justify-content-sm-between">
+          </div>
+        </footer>
+        <!-- partial -->
+      </div>
+      <!-- main-panel ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
+  </div>
+  <!-- container-scroller -->
+  <!-- plugins:js -->
+  <script src="{% static 'vendors/base/vendor.bundle.base.js' %}"></script>
+  <!-- endinject -->
+  <!-- Plugin js for this page-->
+  <!-- End plugin js for this page-->
+  <!-- inject:js -->
+  <script src="{% static 'js/off-canvas.js' %}"></script>
+  <script src="{% static 'js/hoverable-collapse.js' %}"></script>
+  <script src="{% static 'js/template.js' %}"></script>
+  <script src="{% static 'js/todolist.js' %}"></script>
+  <!-- endinject -->
+  <!-- Custom js for this page-->
+  <!-- End custom js for this page-->
+</body>
+
+</html>
