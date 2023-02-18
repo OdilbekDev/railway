@@ -1,1 +1,1 @@
-web: gunicorn 'Wester_school_in_Andijan.wsgi'
+web: gunicorn 'wester_school'
