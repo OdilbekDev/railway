@@ -1,7 +1,7 @@
 .idea/
 .idea
 db.sqlite3
-# venv/
+venv/
 mexclusive/settings.py
 media/
 .idea/
